@@ -1,0 +1,72 @@
+{% extends 'cakestore/main.html' %} {% load static %} {% block content %}
+
+<!--tempate fro showing customer orders-->
+{% comment %} {% for y in orders %}
+<p>{{y.item}}</p>
+<p>{{y.item.price}}</p>
+
+{% endfor %} {% endcomment %}
+
+{% if orders %} 
+<div class="row" style="min-height:45vh">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> PREVIOUS ORDERS</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Order ID</th>
+              <th>Order Date</th>
+              <th>Order Total</th>
+              <th>Order Items</th>
+              <th>Order status</th>
+
+            </thead>
+            <tbody>
+              {% for order in orders %}
+              <tr>
+                <td>{{order.id}}</td>
+                <td>{{order.created}}</td>
+                <td>{{order.total_ordering}}</td>
+                <td>
+                  {% comment %} {% for x in order.item  %} {% endcomment %}
+                  {{order.item}}<br>
+                  {% comment %} {% endfor %} {% endcomment %}
+                </td>
+              <td>{{order.status}}</td>
+
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% else %}
+<div class="row" style="min-height:45vh">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">No Orders</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <th>Order ID</th>
+              <th>Customer Name</th>
+             
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endif%}
+{%endblock%}

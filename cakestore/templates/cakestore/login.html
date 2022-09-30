@@ -1,0 +1,89 @@
+{% extends 'cakestore/main.html' %}
+{% load static %}
+{% block content %}
+    {% comment %} for login {% endcomment %}
+
+
+    {% if form.errors %}
+    <p> There's something wrong with what you entered!</p>
+    {% endif %}
+
+    {% comment %} <div class="container mt-5 mb-5"> {% endcomment %}
+    {% if page == 'login' %}
+    <div class="d-lg-flex half">
+      <div
+        class="bg order-1 order-md-2" style="background-image: url({% static 'cakestore/login/images/forLogin.jpg' %})">
+    </div>
+      <div class="contents order-2 order-md-1">
+        <div class="container">
+          <div class="row align-items-center justify-content-center">
+            <div class="col-md-7">
+              <h3>Login to <strong>CAKE ADDICTS</strong></h3>
+              <p class="mb-4">
+                Lorem ipsum dolor sit amet elit. Sapiente sit aut eos
+                consectetur adipisicing.
+              </p>
+              <form action="{% url 'login'%}" method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password">
+                </div>
+
+                <input type="submit" value="Log In" class="btn btn-block btn-primary" />
+              </form> <br>
+              <div><a href="{% url 'register' %}"> Don't have an account, Register?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% comment %} for sign up {% endcomment %}
+   {% else %}
+
+  <div class="d-lg-flex half mb-10">
+    <div
+            class="bg order-1 order-md-2"
+                    style="background-image: url({% static 'cakestore/login/images/forRegistration.jpg' %})">
+                  </div>
+
+                  <div class="contents order-2 order-md-1">
+                    <div class="container">
+                      <div class="row align-items-center justify-content-center">
+                        <div class="col-md-7 mb-1">
+                          <h3>Register with <strong>CAKE ADDICTS</strong></h3>
+                          <p class="mb-4">
+                            Lorem ipsum dolor sit amet elit. Sapiente sit aut eos
+                            consectetur adipisicing.
+                          </p>
+                          <form action="{% url 'register'%}" method="POST">
+                              {% csrf_token %}
+                              {{ form.as_p }}
+
+                            <input type="submit" value="Register" class="btn btn-block btn-primary" />
+                          </form> <br>
+                          <div>Already have an account, <a href="{% url 'login' %}"> Login</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+      {% endif %}
+      {% comment %} </div> {% endcomment %}
+
+      {% endblock content %}
+  
+
+ 

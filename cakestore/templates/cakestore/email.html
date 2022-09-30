@@ -1,0 +1,10 @@
+Hey {{username}}
+Purchased Items
+    item Name       item quantity       total price
+{% for cart_item in cart%}
+{{cart_item.item.name}} {{cart_item.quantity}} {{cart_item.total_odering}} 
+
+{%endfor%}
+
+Total quantity = {{quantity}}
+Total price = {{total}}

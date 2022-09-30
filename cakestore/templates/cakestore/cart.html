@@ -1,0 +1,76 @@
+{% extends 'cakestore/main.html' %}
+{% load static %}
+{% block content %}
+
+<!--template for cart-->
+{% if cart %}
+    <div class="container mt-5 mb-5" style="min-height:40vh">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Cart</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Image </th>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                            <tr class="text-center">
+                                <td>
+
+                                    <div class="img-box">
+            
+                                        <img src="{{item.item.image.url}}"  style= "height:120px"alt="">
+                                    
+                                         
+                                      </div>
+                                 
+                                
+
+                                </td>
+
+                                <td class="text-left">{{ item.item.name }}</td>
+                                <td>
+                                    <!--reduce item quantity-->
+                                  <a href="{% url 'reduce' item.id %}" ><button type="submit" class="btn btn-danger btn-sm pl-4 pr-4">-</button></a>
+                                    {{ item.quantity }}
+                                    <!--increase item quantity-->
+                                    <a href="{% url 'add' item.id %}"><button type="submit" class="btn btn-success btn-sm pl-4 pr-4">+</button></a>
+
+
+                                </td>
+
+                                <td  class="text-left">{{ item.item.price}}</td>
+
+
+                                <td class="text-left">{{item.total_odering}}</td>
+
+                                <td><a href="{% url 'delete_from_cart' item.id %}">Remove</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <p>Total: {{ total }}</p>
+                <a href="{% url 'checkout' %}" class="btn btn-primary">Checkout</a>
+            </div>
+        </div>
+      
+    </div>
+{% else %}
+    <div class="container mt-5 mb-5" style="min-height:45vh">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Cart</h1>
+                <p>Your cart is empty.</p>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock content %}
